@@ -1,6 +1,6 @@
 {
   "name": "watermelon-bot",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Official Bot of Watermelon Code.",
   "main": "index.js",
   "scripts": {
@@ -11,7 +11,7 @@
     "url": "git+https://github.com/WatermelonCommunity/Watermelon-bot.git"
   },
   "author": "WatermelonCommunity",
-  "license": "MIT",
+  "license": "GPL-3.0",
   "bugs": {
     "url": "https://github.com/WatermelonCommunity/Watermelon-bot/issues"
   },

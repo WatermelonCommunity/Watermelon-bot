@@ -9,12 +9,12 @@ module.exports = {
         const args = message.content.slice(prefix.length).split(/ +/);
         const commandName = args.shift().toLowerCase();
         const command = client.commands.get(commandName)
-        if(!command) return message.channel.send('Ese comando no existe!');
+        if(!command) return message.channel.send('<a:exclamationred:927018216285433907>**Ese comando no existe.**');
         try{
             command.execute(message, args, MessageEmbed, Util, client)
         }catch(error){
             console.log(error)
-            message.channel.send("Error fatal!.")
+            message.channel.send("<a:no:927018214066647122>**Error fatal.**")
         }
     },
 };
