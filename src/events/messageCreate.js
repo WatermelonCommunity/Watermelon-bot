@@ -9,7 +9,7 @@ module.exports = {
         const args = message.content.slice(prefix.length).split(/ +/);
         const commandName = args.shift().toLowerCase();
         const command = client.commands.get(commandName)
-        if(!command) return message.channel.send('<a:exclamationred:927018216285433907>**Ese comando no existe.**');
+        if(!command) return message.reply('<a:exclamationred:927018216285433907>**Ese comando no existe.**');
         try{
             command.execute(message, args, MessageEmbed, Util, client)
         }catch(error){

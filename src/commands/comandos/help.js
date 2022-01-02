@@ -34,6 +34,6 @@ module.exports = {
             }
         };
 
-        message.channel.send({ embeds: [helpMessage]});
+        message.reply({ embeds: [helpMessage]});
     },
 };
