@@ -12,7 +12,7 @@ module.exports = {
             fields: [
                 {
                   name: '__Utilidad__',
-                  value: '<a:info:927044960719618068>userinfo\n<a:info:927044960719618068>avatar\n<a:info:927044960719618068>climate\n<a:info:927044960719618068>ping\n<a:info:927044960719618068>serverinfo\n<a:info:927044960719618068>suggest',
+                  value: '<a:info:927044960719618068>userinfo\n<a:info:927044960719618068>avatar\n<a:info:927044960719618068>weather\n<a:info:927044960719618068>ping\n<a:info:927044960719618068>serverinfo\n<a:info:927044960719618068>suggest',
                 },
                 {
                   name: '__Moderación__',
