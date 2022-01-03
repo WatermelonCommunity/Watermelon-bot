@@ -3,6 +3,7 @@ const dotenv = require('dotenv').config();
 const fs = require("fs");
 const client = new Client({
   intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_MEMBERS],
+  partials: ['MESSAGE', 'CHANNEL', 'REACTION', 'GUILD_MEMBER'],
 });
 const { comandos } = require(`${__dirname}/src/utils/handler/commands.js`);
 const { eventos } = require(`${__dirname}/src/utils/handler/events.js`);
