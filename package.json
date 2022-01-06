@@ -17,10 +17,10 @@
   },
   "homepage": "https://github.com/WatermelonCommunity/Watermelon-bot#readme",
   "dependencies": {
+    "@discordjs/builders": "^0.11.0",
     "@discordjs/rest": "^0.2.0-canary.0",
-    "discord-api-types": "^0.26.0",
+    "discord-api-types": "^0.26.1",
     "discord.js": "^13.5.0",
-    "dotenv": "^10.0.0",
     "moment": "^2.29.1"
   }
 }
