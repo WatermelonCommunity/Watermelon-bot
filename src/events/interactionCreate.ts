@@ -1,8 +1,6 @@
 export default {
-    name: "interactionCreate",
+    name: 'interactionCreate',
     execute(interaction) {
-        console.log(
-            `${interaction.user.tag} en #${interaction.channel.name} ejecuto una interacción.`
-        );
-    },
+        console.log(`${interaction.user.tag} en #${interaction.channel.name} ejecuto una interacción.`);
+    }
 };

@@ -1,50 +1,52 @@
-import { Client, Collection, Intents } from "discord.js";
-import fs from "fs";
-import token from "./env.json";
+import { Client, Collection, CommandInteraction, Intents } from 'discord.js';
+import * as fs from 'fs';
+import token from './env.json';
 
-const client = new Client({
-    intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_MEMBERS],
+const client: Client = new Client({
+    intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_MEMBERS]
 });
 
-//@ts-ignore
+// @ts-ignore
 client.commands = new Collection();
-const commandFiles: string[] = fs.readdirSync("./src/commands").filter((file) => file.endsWith(".js"));
-const eventFiles: string[] = fs.readdirSync("./src/events").filter((file) => file.endsWith(".js"));
+const commandFiles: string[] = fs.readdirSync('./src/commands').filter((file) => file.endsWith('.js'));
+const eventFiles: string[] = fs.readdirSync('./src/events').filter((file) => file.endsWith('.js'));
 
-for (const file of commandFiles) {
+commandFiles.forEach((file) => {
     const command = require(`./src/commands/${file}`);
-    //@ts-ignore
-    client.commands.set(command.default.data.name, command);
-}
+    client?.application?.commands.set(command.default.data.name, command);
+});
 
-client.on("interactionCreate", async (interaction) => {
-    if (!interaction.isCommand()) return;
-    //@ts-ignore
-    const command = client.commands.get(interaction.commandName);
-
-    if (!command) return;
+client.on('INTERACTION_CREATE', async (interaction: CommandInteraction) => {
+    const isCommand: boolean = interaction.isCommand();
+    if (!isCommand) return;
+    // @ts-ignore
+    const command = await client?.application?.commands.get(interaction.commandName);
 
     try {
-        await command.execute(interaction);
+        await command!.default.execute(interaction);
     } catch (error) {
         console.error(error);
         return interaction.reply({
-            content: "There was an error while executing this command!",
-            ephemeral: true,
+            content: 'There was an error while executing this command!',
+            ephemeral: true
         });
     }
 });
 
+interface TEvent {
+    name: string;
+    once: boolean;
+    execute(x: any): void;
+}
+
 for (const file of eventFiles) {
-    const event = require(`./src/events/${file}`);
+    const event: TEvent = require(`./src/events/${file}`);
 
     if (event.once) {
-        client.once(event.name, (...args) => event.execute(...args));
+        client.once(event.name, (...args) => event.execute([...args]));
     } else {
-        client.on(event.name, (...args) => event.execute(...args));
+        client.on(event.name, (...args) => event.execute([...args]));
     }
 }
 
 client.login(token.token);
-
-//this does not work
