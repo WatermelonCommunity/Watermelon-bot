@@ -6,7 +6,9 @@
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
         "lint": "eslint --ext .js,.ts src",
-        "format": "npx prettier --write ."
+        "format": "npx prettier --write .",
+        "start": "tsc && node dist/app.js",
+        "dev": "npx nodemon ./app.ts"
     },
     "repository": {
         "type": "git",
@@ -36,6 +38,7 @@
         "eslint-plugin-import": "^2.25.4",
         "eslint-plugin-node": "^11.1.0",
         "eslint-plugin-promise": "^5.2.0",
+        "nodemon": "^2.0.15",
         "ts-node": "^10.4.0"
     }
 }
