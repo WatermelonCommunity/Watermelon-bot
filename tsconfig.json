@@ -1,9 +1,10 @@
 {
+    "extends": "@tsconfig/node16/tsconfig.json",
     "compilerOptions": {
         "incremental": true,
-        "target": "ESNext",
+        "target": "ES2015",
         "module": "commonjs",
-        "rootDir": "./src",
+        "rootDir": "./",
         "baseUrl": ".",
         "types": ["node"],
         "resolveJsonModule": true,
