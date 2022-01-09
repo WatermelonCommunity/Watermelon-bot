@@ -1,9 +1,10 @@
-import { Client, Collection, CommandInteraction, Intents } from 'discord.js';
+import { Client, Collection, CommandInteraction, Intents, Message } from 'discord.js';
 import * as fs from 'fs';
 import botConfig from './src/config';
 
-const client: Client = new Client({
-    intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_MEMBERS]
+const client = new Client({
+    intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_MEMBERS],
+    allowedMentions: { parse: ['users', 'roles'], repliedUser: true }
 });
 
 // @ts-ignore
@@ -15,6 +16,11 @@ commandFiles.forEach((file) => {
     const command = require(`./src/commands/${file}`);
     client?.application?.commands.set(command.default.data.name, command);
 });
+
+for (const file of eventFiles) {
+    const event = require(`./src/events/${file}`);
+    client.on(event.default.name, event.default.execute);
+}
 
 client.on('INTERACTION_CREATE', async (interaction: CommandInteraction) => {
     const isCommand: boolean = interaction.isCommand();
@@ -49,4 +55,9 @@ for (const file of eventFiles) {
     }
 }
 
+client.on('messageCreate', (message: Message) => {
+    console.log(message);
+});
+
+console.log(`Logging in with token: ${botConfig.token}`);
 client.login(botConfig.token);
