@@ -1,6 +1,6 @@
 import { Client, Collection, CommandInteraction, Intents } from 'discord.js';
 import * as fs from 'fs';
-import token from './env.json';
+import botConfig from './src/config';
 
 const client: Client = new Client({
     intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_MEMBERS]
@@ -49,4 +49,4 @@ for (const file of eventFiles) {
     }
 }
 
-client.login(token.token);
+client.login(botConfig.token);
