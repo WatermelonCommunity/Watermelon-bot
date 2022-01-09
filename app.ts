@@ -35,13 +35,19 @@ client.on('interactionCreate', async (interaction) => {
     }
 });
 
+interface TEvent {
+    name: string;
+    once: boolean;
+    execute(x: any): void;
+}
+
 for (const file of eventFiles) {
-    const event = require(`./src/events/${file}`);
+    const event: TEvent = require(`./src/events/${file}`);
 
     if (event.once) {
-        client.once(event.name, (...args) => event.execute(...args));
+        client.once(event.name, (...args) => event.execute([...args]));
     } else {
-        client.on(event.name, (...args) => event.execute(...args));
+        client.on(event.name, (...args) => event.execute([...args]));
     }
 }
 
