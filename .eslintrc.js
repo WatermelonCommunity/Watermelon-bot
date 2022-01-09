@@ -16,6 +16,7 @@ module.exports = {
     '@typescript-eslint'
   ],
   rules: {
-    semi: ['error', 'never']
+    semi: ['error', 'always'],
+    indent: 'off'
   }
-}
+};
