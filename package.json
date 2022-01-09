@@ -1,35 +1,37 @@
 {
-  "name": "watermelon-bot",
-  "version": "2.0.0",
-  "description": "Official Bot of Watermelon Code.",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/WatermelonCommunity/Watermelon-bot.git"
-  },
-  "author": "WatermelonCommunity",
-  "license": "GPL-3.0",
-  "bugs": {
-    "url": "https://github.com/WatermelonCommunity/Watermelon-bot/issues"
-  },
-  "homepage": "https://github.com/WatermelonCommunity/Watermelon-bot#readme",
-  "dependencies": {
-    "@discordjs/builders": "^0.11.0",
-    "@discordjs/rest": "^0.2.0-canary.0",
-    "discord-api-types": "^0.26.1",
-    "discord.js": "^13.5.0",
-    "moment": "^2.29.1"
-  },
-  "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^5.9.0",
-    "@typescript-eslint/parser": "^5.9.0",
-    "eslint": "^7.32.0",
-    "eslint-config-standard": "^16.0.3",
-    "eslint-plugin-import": "^2.25.4",
-    "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-promise": "^5.2.0"
-  }
+    "name": "watermelon-bot",
+    "version": "2.0.0",
+    "description": "Official Bot of Watermelon Code.",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "lint": "eslint --ext .js,.ts src",
+        "format": "npx prettier --write ."
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/WatermelonCommunity/Watermelon-bot.git"
+    },
+    "author": "WatermelonCommunity",
+    "license": "GPL-3.0",
+    "bugs": {
+        "url": "https://github.com/WatermelonCommunity/Watermelon-bot/issues"
+    },
+    "homepage": "https://github.com/WatermelonCommunity/Watermelon-bot#readme",
+    "dependencies": {
+        "@discordjs/builders": "^0.11.0",
+        "@discordjs/rest": "^0.2.0-canary.0",
+        "discord-api-types": "^0.26.1",
+        "discord.js": "^13.5.0",
+        "moment": "^2.29.1"
+    },
+    "devDependencies": {
+        "@typescript-eslint/eslint-plugin": "^5.9.0",
+        "@typescript-eslint/parser": "^5.9.0",
+        "eslint": "^7.32.0",
+        "eslint-config-standard": "^16.0.3",
+        "eslint-plugin-import": "^2.25.4",
+        "eslint-plugin-node": "^11.1.0",
+        "eslint-plugin-promise": "^5.2.0"
+    }
 }
