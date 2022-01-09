@@ -5,7 +5,8 @@ import type { TConfig } from './types/TConfig';
 import 'dotenv/config';
 
 const botConfig: TConfig = {
-    token: process.env.BOT_TOKEN
+    token: process.env.BOT_TOKEN,
+    prefix: '!'
 };
 
 export default botConfig;
