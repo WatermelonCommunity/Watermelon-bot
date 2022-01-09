@@ -1,8 +1,8 @@
 import { Client, Collection, Intents } from 'discord.js';
-import fs from 'fs';
+import * as fs from 'fs';
 import token from './env.json';
 
-const client = new Client({
+const client: Client = new Client({
     intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_MEMBERS]
 });
 
