@@ -50,5 +50,3 @@ for (const file of eventFiles) {
 }
 
 client.login(token.token);
-
-//  this does not work
