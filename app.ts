@@ -1,5 +1,5 @@
 import { Client, Collection, CommandInteraction, Intents, Message } from 'discord.js';
-import * as fs from 'fs';
+import * as fs from 'graceful-fs';
 import botConfig from './src/config';
 
 const client = new Client({
@@ -9,55 +9,32 @@ const client = new Client({
 
 // @ts-ignore
 client.commands = new Collection();
-const commandFiles: string[] = fs.readdirSync('./src/commands').filter((file) => file.endsWith('.js'));
-const eventFiles: string[] = fs.readdirSync('./src/events').filter((file) => file.endsWith('.js'));
 
-commandFiles.forEach((file) => {
-    const command = require(`./src/commands/${file}`);
-    client?.application?.commands.set(command.default.data.name, command);
-});
+const cmds: Array<any> = [];
+const cmdFiles = fs.readdirSync('./src/commands').filter((f) => f.endsWith('.js'));
+const evnFiles = fs.readdirSync('./src/events').filter((f) => f.endsWith('.js'));
 
-for (const file of eventFiles) {
-    const event = require(`./src/events/${file}`);
-    client.on(event.default.name, event.default.execute);
+for (const file of cmdFiles) {
+    const cmd = require(`./src/commands/${file}`);
+    cmds.push(cmd.default.data.toJSON());
+
+    //@ts-ignore
+    client.commands.set(cmd.default.data.name, cmd);
 }
 
-client.on('INTERACTION_CREATE', async (interaction: CommandInteraction) => {
-    const isCommand: boolean = interaction.isCommand();
-    if (!isCommand) return;
-    // @ts-ignore
-    const command = await client?.application?.commands.get(interaction.commandName);
+for (const file of evnFiles) {
+    const evn = require(`./src/events/${file}`);
 
-    try {
-        await command!.default.execute(interaction);
-    } catch (error) {
-        console.error(error);
-        return interaction.reply({
-            content: 'There was an error while executing this command!',
-            ephemeral: true
+    if (evn.default.once) {
+        client.once(evn.default.name, async (...args) => {
+            await evn.default.execute(...args);
+        });
+    } else {
+        client.on(evn.default.name, async (...args) => {
+            await evn.default.execute(client, ...args);
         });
     }
-});
-
-interface TEvent {
-    name: string;
-    once: boolean;
-    execute(x: any): void;
 }
-
-for (const file of eventFiles) {
-    const event: TEvent = require(`./src/events/${file}`);
-
-    if (event.once) {
-        client.once(event.name, (...args) => event.execute([...args]));
-    } else {
-        client.on(event.name, (...args) => event.execute([...args]));
-    }
-}
-
-client.on('messageCreate', (message: Message) => {
-    console.log(message);
-});
 
 console.log(`Logging in with token: ${botConfig.token}`);
 client.login(botConfig.token);

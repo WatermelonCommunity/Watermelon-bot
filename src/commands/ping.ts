@@ -1,9 +1,17 @@
-import { CommandInteraction } from 'discord.js';
-import { SlashCommandBuilder } from '@discordjs/builders';
+import { CommandInteraction } from "discord.js/typings/index.js";
+import { SlashCommandBuilder } from "@discordjs/builders";
 
 export default {
-    data: new SlashCommandBuilder().setName('ping').setDescription('Replies with Pong!'),
-    async execute(interacion: CommandInteraction) {
-        await interacion.reply('Pong!');
+    data: new SlashCommandBuilder()
+        .setName("ping")
+        .setDescription("Returns current client ping"),
+    run: async (interaction: CommandInteraction) => {
+        // @ts-ignore
+        const apiPing = Math.round(interaction.client.ws.ping);
+
+        interaction.reply({
+            content: `Pong!\nClient: NaNms\nAPI: ${apiPing}ms`,
+            ephemeral: false
+        });
     }
-};
+}
