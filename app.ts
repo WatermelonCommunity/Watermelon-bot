@@ -1,4 +1,4 @@
-import { Client, Collection, CommandInteraction, Intents, Message } from 'discord.js';
+import { Client, Collection, Intents } from 'discord.js';
 import * as fs from 'graceful-fs';
 import botConfig from './src/config';
 
@@ -18,7 +18,7 @@ for (const file of cmdFiles) {
     const cmd = require(`./src/commands/${file}`);
     cmds.push(cmd.default.data.toJSON());
 
-    //@ts-ignore
+    // @ts-ignore
     client.commands.set(cmd.default.data.name, cmd);
 }
 
