@@ -8,7 +8,7 @@ export default {
         const apiPing = Math.round(interaction.client.ws.ping);
 
         interaction.reply({
-            content: `Ping del bot: ${apiPing}\nLatencia de mensajes: ${NaN}ms`, // Soon I will do this
+            content: `Ping del bot: ${apiPing}ms\nLatencia de mensajes: ${NaN}ms`, // Soon I will do this
             ephemeral: false
         });
     }
