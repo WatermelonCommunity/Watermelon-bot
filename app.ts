@@ -36,5 +36,4 @@ for (const file of evnFiles) {
     }
 }
 
-console.log(`Logging in with token: ${botConfig.token}`);
 client.login(botConfig.token);

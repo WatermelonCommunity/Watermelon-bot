@@ -2,7 +2,7 @@
     "name": "watermelon-bot",
     "version": "2.0.0",
     "description": "Official Bot of Watermelon Code.",
-    "main": "dist/index.js",
+    "main": "dist/app.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
         "lint": "eslint --ext .js,.ts src",
