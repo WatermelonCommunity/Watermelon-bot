@@ -8,9 +8,11 @@
         "lint": "eslint --ext .js,.ts src",
         "format": "npx prettier --write .",
         "build": "tsc && copy .env dist",
+        "build:linux": "tsc && cp .env dist",
         "start": "tsc && copy .env dist && cd dist && node ./app.js",
+        "deploy": "copy .env dist && cd dist && node ./deploy.js",
         "dev": "copy .env dist && cd dist && npx nodemon ./app.js",
-        "deploy": "copy .env dist && cd dist && node ./deploy.js"
+        "dev:linux": "npm run build:linux && cd dist && npx nodemon ./app.js"
     },
     "repository": {
         "type": "git",
