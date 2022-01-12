@@ -17,7 +17,7 @@ const rest = new REST({ version: '9' }).setToken(token);
 
         await rest.put(Routes.applicationGuildCommands('926293354294181959', '926296573959344188'), { body: cmds });
 
-        console.log("Slash commands (/) have been uploaded to the bot's guild.");
+        console.log('Slash commands (/) se han cargado al servidor del bot.');
     } catch (error) {
         console.error(error);
     }

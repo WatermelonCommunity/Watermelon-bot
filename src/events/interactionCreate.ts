@@ -12,7 +12,7 @@ export default {
         } catch (err) {
             console.error(err);
             return interaction.reply({
-                content: 'An error ocurred',
+                content: 'Un error ha ocurrido.',
                 ephemeral: true
             });
         }
