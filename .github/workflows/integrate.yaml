@@ -12,4 +12,4 @@ jobs:
               with:
                   node-version: 16
             - run: npx prettier --write .
-            - run: eslint --ext .js,.ts src
+            - run: npx eslint --ext .js,.ts src
