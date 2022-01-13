@@ -12,7 +12,8 @@
         "start": "tsc && copy .env dist && cd dist && node ./app.js",
         "deploy": "copy .env dist && cd dist && node ./deploy.js",
         "dev": "copy .env dist && cd dist && npx nodemon ./app.js",
-        "dev:linux": "npm run build:linux && cd dist && npx nodemon ./app.js"
+        "dev:linux": "npm run build:linux && cd dist && npx nodemon ./app.js",
+        "prepare": "husky install"
     },
     "repository": {
         "type": "git",
@@ -44,8 +45,15 @@
         "eslint-plugin-import": "^2.25.4",
         "eslint-plugin-node": "^11.1.0",
         "eslint-plugin-promise": "^5.2.0",
+        "husky": "^7.0.4",
+        "lint-staged": "^12.1.7",
         "nodemon": "^2.0.15",
+        "prettier": "2.5.1",
         "ts-node": "^10.4.0",
         "typescript": "^4.5.4"
+    },
+    "lint-staged": {
+        "*.{js,ts}": "eslint --cache --fix",
+        "prettier": "prettier --write ."
     }
 }
