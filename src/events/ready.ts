@@ -4,6 +4,7 @@ export default {
     name: 'ready',
     once: true,
     execute(client: Client) {
-        console.log(`Listo! iniciado en ${client?.user?.tag}`);
+        client?.user?.setActivity('Bot en desarrollo.', { type: 'WATCHING' });
+        console.log(`Inicializado como ${client?.user?.username}`);
     }
 };
