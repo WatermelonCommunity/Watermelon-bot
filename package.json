@@ -13,7 +13,9 @@
         "deploy": "copy .env dist && cd dist && node ./deploy.js",
         "dev": "copy .env dist && cd dist && npx nodemon ./app.js",
         "dev:linux": "npm run build:linux && cd dist && npx nodemon ./app.js",
-        "prepare": "husky install"
+        "prepare": "husky install",
+        "clean": "del /F /S /Q dist",
+        "clean:linux": "rm -rf dist"
     },
     "repository": {
         "type": "git",

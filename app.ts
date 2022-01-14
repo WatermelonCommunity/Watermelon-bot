@@ -9,18 +9,25 @@ const client = new Client({
 
 // @ts-ignore
 client.commands = new Collection();
+// @ts-ignore
+client.categorys = new Collection();
 
 const cmds: Array<any> = [];
-const cmdFiles = fs.readdirSync('./src/commands').filter((f) => f.endsWith('.js'));
+fs.readdirSync('./src/commands').forEach((dir) => {
+    const files = fs.readdirSync(`./src/commands/${dir}`).filter((file) => file.endsWith('.js'));
+
+    files.forEach((file) => {
+        const cmd = require(`./src/commands/${dir}/${file}`);
+
+        // @ts-ignore
+        client.commands.set(cmd.default.data.name, cmd);
+        // @ts-ignore
+        client.categorys.set(cmd.default.data.name, dir);
+        cmds.push(cmd);
+    });
+});
+
 const evnFiles = fs.readdirSync('./src/events').filter((f) => f.endsWith('.js'));
-
-for (const file of cmdFiles) {
-    const cmd = require(`./src/commands/${file}`);
-    cmds.push(cmd.default.data.toJSON());
-
-    // @ts-ignore
-    client.commands.set(cmd.default.data.name, cmd);
-}
 
 for (const file of evnFiles) {
     const evn = require(`./src/events/${file}`);
